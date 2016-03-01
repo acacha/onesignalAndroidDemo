@@ -2,7 +2,7 @@
 
     'use strict';
 
-    var STORAGE_KEY = 'PUSHWOOSH_NOTIFICATIONS';
+    var STORAGE_KEY = 'ONESIGNAL_NOTIFICATIONS';
 
     exports.notificationStorage = {
         fetch: function () {

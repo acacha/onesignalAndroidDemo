@@ -2,18 +2,18 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <pushwoosh></pushwoosh>
+        <onesignal></onesignal>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Pushwoosh from './components/Pushwoosh.vue'
+import Onesignal from './components/Onesignal.vue'
 
 export default {
   components: {
-    Pushwoosh
+    Onesignal
   }
 }
 </script>

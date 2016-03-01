@@ -1,9 +1,9 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
-  <div class="pushwoosh">
+  <div class="onesignal">
     <h1>{{ title }}</h1>
-    <h2>First install Pushwoosh Android demo app on your phone. You can find the app at:</h2>
-    <h3><a href="https://play.google.com/store/apps/details?id=com.pushwoosh.test.tags.sample.app&hl=es">Google Play</a></h3>
-    <h4>Source code on <a href="https://github.com/acacha/pushwoosh_demo">Github</a></h4>
+    <h2>First install https://github.com/acacha/AcachaDemoOneSignalAndroid Android demo app on your phone. You can find the app at (TODO):</h2>
+    <h3><a href="https://play.google.com/store/apps/">Google Play</a></h3>
+    <h4>Source code on <a href="https://github.com/acacha/onesignalAndroidDemo">Github</a></h4>
     <div class="box box-primary direct-chat direct-chat-primary">
       <div class="box-header with-border">
         <h3 class="box-title">Send notifications</h3>
@@ -24,7 +24,7 @@
 
           <div class="direct-chat-msg" v-for="notification in notifications">
             <div class="direct-chat-info clearfix">
-              <span class="direct-chat-name pull-left">Pushwoosh</span>
+              <span class="direct-chat-name pull-left">One Signal</span>
               <span class="direct-chat-timestamp pull-right">{{ notification.date }}</span>
             </div>
             <!-- /.direct-chat-info -->
@@ -51,7 +51,7 @@
       <!-- /.box-body -->
       <div class="box-footer">
           <div class="input-group">
-            <input id="pushwoosh_message"
+            <input id="onesignal_message"
                    type="text"
                    autofocus autocomplete="off"
                    placeholder="What do you want to notify?"
@@ -85,7 +85,7 @@ export default {
       // with hot-reload because the reloaded component
       // preserves its current state and we are modifying
       // its initial state.
-      title: 'Pushwoosh sample',
+      title: 'Onesignal sample',
       newNotification: '',
       notifications: notificationStorage.fetch()
     }
@@ -123,17 +123,22 @@ export default {
 
       $.ajax({
         type: "POST",
-        url: "https://cp.pushwoosh.com/json/1.3/createMessage",
+        url: "https://onesignal.com/api/v1/notifications?app_id=29ef6b21-7909-4f68-ad94-679a6ab5ad7e",
+        beforeSend: function (xhr) {
+          xhr.setRequestHeader('Authorization', 'Basic NGRlMWJkMWUtN2E0Ni00NGFjLTk5MzItYmE5NTcwMmMzOWJm'),
+          xhr.setRequestHeader('Content-Type', 'application/json')
+        },
         data: JSON.stringify({
-          "request": {
-            "application": "4FC89B6D14A655.46488481",
-            "auth": "mTdns0j6qLYPa/A5htmD46xVyoxdVQfPBz7NRqYYHz9PhvKXgJtOkAY+yo0YTXDEoztQAJFY0JmXnd89tf59",
-            "notifications": [{
-              "send_date": "now",
-              "ignore_user_timezone": true,
-              "content": this.newNotification
-            }]
-          }
+          "app_id": "29ef6b21-7909-4f68-ad94-679a6ab5ad7e",
+          "included_segments": ["All"],
+          "data": {"foo": "bar"},
+          "content_available":true,
+          "contents": {"en": this.newNotification,"es": this.newNotification},
+          "headings": {"en": this.newNotification,"es": this.newNotification},
+          "isAndroid": true,
+          "android_sound": "notification",
+          "android_led_color": "FF0000FF",
+          "android_visibility": 1
         }),
         dataType: "json"
       }).done(function(data) {
@@ -147,7 +152,7 @@ export default {
     },
     notifyNotWorking: function () {
       //NOT WORKING PUSHWOOSH NOT IMPLEMENTING CORS?
-      var $message = $('#pushwoosh_message').val();
+      var $message = $('#onesignal_message').val();
       console.debug($message);
       var $data = JSON.stringify({
         "request": {
@@ -162,11 +167,7 @@ export default {
       });
       console.debug($data);
     Vue.http.get('https://cp.pushwoosh.com/json/1.3/createMessage',$data).then(this.successCallback, this.errorCallback);
-//      this.$http.post('https://cp.pushwoosh.com/json/1.3/createMessage', $data, function (data, status, request) {
-//        alert("Cart saved successfully.");
-//      }).error(function (data, status, request) {
-//        alert('There was a problem saving this cart. Please try again.');
-//      });
+
     },
     successCallback: function () {
       console.debug('SUCCESS');

@@ -1,13 +1,13 @@
 {
-  "name": "pushwoosh_demo",
-  "description": "A demo for pushwoosh",
+  "name": "OneSignal demo",
+  "description": "A demo for OneSignal",
   "main": "",
   "authors": [
     "Sergi Tur Badenas <sergiturbadenas@gmail.com>"
   ],
   "license": "MIT",
   "moduleType": [],
-  "homepage": "https://github.com/acacha/pushwoosh_demo",
+  "homepage": "https://github.com/acacha/onesignalAndroidDemo",
   "ignore": [
     "**/.*",
     "node_modules",
