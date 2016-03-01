@@ -1,20 +1,30 @@
-# pushwoosh_demo
+# onesignalAndroidDemo
 
-> A demo for pushwoosh
+> A demo for seding notifications to One Signal
 
 # Demo
 
-http://acacha.github.io/pushwoosh_demo/
+http://acacha.github.io/onesignalAndroidDemo/
 
 # See Also
 
-- http://acacha.org/mediawiki/Pushwoosh
+- http://acacha.org/mediawiki/OneSignal
+
+# Android App code
+
+https://github.com/acacha/AcachaDemoOneSignalAndroid
+
+Exampled based on : https://github.com/one-signal/OneSignal-Android-SDK
+
+# App in play Store
+
+TODO
 
 # Builded using
 
 - Vue
 - Vue-cli Browserify
-- Pushwoosh API and Push demo app
+- OneSignal API and Android App code in https://github.com/acacha/AcachaDemoOneSignalAndroid
 - Jquery
 - AdminLTE
 
